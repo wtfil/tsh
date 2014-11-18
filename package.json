@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "gnode": "^0.1.0",
+    "koa": "^0.13.0",
+    "koa-browserify": "0.0.4",
+    "koa-router": "^3.7.0"
+  }
+}
