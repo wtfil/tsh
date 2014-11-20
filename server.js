@@ -1,5 +1,6 @@
 var app = require('koa')();
 var router = require('koa-router');
+var fs = require('fs');
 var serve = require('koa-static');
 var browserify = require('koa-browserify');
 var terminals = {};
@@ -13,9 +14,20 @@ app.use(router(app));
 server = http.Server(app.callback());
 io = require('socket.io')(server);
 
+app.get('/:id', function* () {
+	this.type = 'text/html';
+	this.body = fs.createReadStream('./public/index.html');
+});
 app.post('/rooms/:id', parseBody, function* (next) {
 	saveTerminal(this.params.id, this.request.body.toString());
 	sendTerminal(this.params.id);
+});
+
+
+io.on('connection', function (socket) {
+	socket.on('join-room', function (data) {
+		socket.join(data.id);
+	});
 });
 
 server.listen(4444);
@@ -39,4 +51,5 @@ function saveTerminal(id, data) {
 }
 
 function sendTerminal(id) {
+	io.to(id).emit('terminal', {terminal: terminals[id]});
 }

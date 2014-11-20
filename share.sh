@@ -5,7 +5,6 @@ SERVER="http://127.0.0.1:4444"
 
 while true; do
 	content=`cat $FILE`
-	echo $content
 	#curl -H "Content-Type: application/json" -d "{\"data\": \"$content\"}" "$SERVER/rooms/123" &> /dev/null
 	curl -d "$content" "$SERVER/rooms/123" &> /dev/null
 	sleep 1
