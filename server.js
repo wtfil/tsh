@@ -1,17 +1,24 @@
 var app = require('koa')();
 var router = require('koa-router');
+var serve = require('koa-static');
 var browserify = require('koa-browserify');
 var terminals = {};
-
-app.use(router(app));
+var http = require('http');
+var server, io;
 
 app.use(browserify('./public'));
+app.use(serve('./public'));
+app.use(router(app));
+
+server = http.Server(app.callback());
+io = require('socket.io')(server);
 
 app.post('/rooms/:id', parseBody, function* (next) {
 	saveTerminal(this.params.id, this.request.body.toString());
 	sendTerminal(this.params.id);
 });
-app.listen(4444);
+
+server.listen(4444);
 
 function* parseBody(next) {
 	var chunks = [];
