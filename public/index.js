@@ -1,17 +1,28 @@
 var io = require('socket.io-client');
+var Convert = require('ansi-to-html')
+var convert = new Convert({newLine: true});
 var terminalId = window.location.pathname.split('/')[1];
 var socket = io('//' + window.location.host);
 
 socket.emit('join-room', {id: terminalId});
 
 function format(text) {
-	return text.replace(/\[\??\d+(;\d+)?\w?/g, '');
+	return convert.toHtml(text);
 }
 
 window.addEventListener('load', function () {
 	var terminal = document.querySelector('.terminal');
+	var prev = '';
 	socket.on('terminal', function (data) {
-		terminal.innerHTML = format(data.terminal);
-		terminal.scrollTop = terminal.scrollHeight;
+		var current = format(data.terminal);
+		if (current.length !== prev.length) {
+			if (current.length > prev.length) {
+				terminal.innerHTML += current.slice(prev.length);
+			} else {
+				terminal.innerHTML = current;
+			}
+			prev = current;
+			terminal.scrollTop = terminal.scrollHeight;
+		}
 	});
 });

@@ -3,6 +3,7 @@
     "start": "node --harmony server"
   },
   "dependencies": {
+    "ansi-to-html": "^0.2.1",
     "gnode": "^0.1.0",
     "koa": "^0.13.0",
     "koa-browserify": "0.0.4",
