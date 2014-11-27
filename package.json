@@ -2,6 +2,21 @@
   "scripts": {
     "start": "node --harmony server"
   },
+  "name": "terminal-share",
+  "version": "0.0.1",
+  "keywords": [
+      "terminal",
+      "bash",
+      "shell"
+  ],
+  "author": {
+      "name": "Evgen Filatov",
+      "email": "evgen.filatov@gmail.com"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/wtfil/terminal-share"
+  },
   "dependencies": {
     "ansi-to-html": "^0.2.1",
     "gnode": "^0.1.0",
@@ -11,5 +26,8 @@
     "koa-static": "^1.4.7",
     "socket.io": "^1.2.0",
     "socket.io-client": "^1.2.0"
+  },
+  "engines": {
+    "node": ">= 0.11.0"
   }
 }
