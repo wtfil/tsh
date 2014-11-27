@@ -12,5 +12,6 @@ done &
 
 trap "kill 0" exit INT TERM
 
-echo -e "\n\t\033[4m$SERVER/$ROOM_ID\033[0m\n"
+echo -e "\n\tStreaming started. Type \"exit\" to stop streaming:\n\t\033[37m\033[4m$SERVER/$ROOM_ID\033[0m\n"
+
 script -q -t 0.1 $FILE
