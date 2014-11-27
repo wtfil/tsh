@@ -10,7 +10,7 @@ function format(text) {
 	return convert.toHtml(text);
 }
 
-window.addEventListener('load', function () {
+window.addEventListener('DOMContentLoaded', function () {
 	var terminal = document.querySelector('.terminal');
 	var prev = '';
 	socket.on('terminal', function (data) {
