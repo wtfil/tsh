@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE=/tmp/terminal-share-test
 ROOM_ID=`Date | md5`
-SERVER="http://127.0.0.1:4444"
+SERVER="https://glacial-oasis-4823.herokuapp.com/"
 >$FILE
 
 while true; do

@@ -30,7 +30,7 @@ io.on('connection', function (socket) {
 	});
 });
 
-server.listen(4444);
+server.listen(Number(process.env.PORT || 4444));
 
 function* parseBody(next) {
 	var chunks = [];
