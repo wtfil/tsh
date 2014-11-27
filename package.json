@@ -3,7 +3,7 @@
     "start": "node --harmony server"
   },
   "name": "terminal-share",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "keywords": [
       "terminal",
       "bash",
@@ -16,6 +16,9 @@
   "repository": {
       "type": "git",
       "url": "https://github.com/wtfil/terminal-share"
+  },
+  "bin": {
+	"terminal-share": "./bin/share.sh"
   },
   "dependencies": {
     "ansi-to-html": "^0.2.1",
