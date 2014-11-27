@@ -1,6 +1,6 @@
 {
   "name": "tsh",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "share you terminal over http",
   "keywords": [
       "terminal",
@@ -18,7 +18,7 @@
       "url": "https://github.com/wtfil/terminal-share"
   },
   "bin": {
-	"terminal-share": "./bin/share.sh"
+	"tsh": "./bin/share.sh"
   },
   "dependencies": {
     "ansi-to-html": "^0.2.1",
