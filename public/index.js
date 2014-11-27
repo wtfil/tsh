@@ -6,10 +6,6 @@ var socket = io('//' + window.location.host);
 
 socket.emit('join-room', {id: terminalId});
 
-function specialCharesters(text) {
-	var re = /[K(.)/g;
-	/*while (text)*/
-}
 function format(text) {
 	return convert.toHtml(text);
 }
