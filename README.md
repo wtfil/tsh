@@ -23,3 +23,9 @@ Also `tsh` has not support for special characters yet:
 ## usage
 
 	tsh
+
+you can define your own (server)[https://github.com/wtfil/tsh-server] or room name
+
+	tsh -s http://127.0.0.1:4444 -r my-room
+
+and then you streem will be avaliable by ()[http://127.0.0.1:4444/my-room]

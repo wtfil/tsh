@@ -4,6 +4,17 @@ ROOM_ID=`Date | md5`
 SERVER="https://glacial-oasis-4823.herokuapp.com"
 >$FILE
 
+while getopts ":r:s:" opt; do
+	case $opt in
+		r) ROOM_ID="$OPTARG"
+			;;
+		s) SERVER="$OPTARG"
+			;;
+		\?) echo "Invalid option -$OPTARG" >&2
+			;;
+	esac
+done
+
 while true; do
 	content=`cat $FILE`
 	curl -d "$content" "$SERVER/rooms/$ROOM_ID" &> /dev/null
