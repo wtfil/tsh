@@ -15,9 +15,13 @@ while getopts ":r:s:" opt; do
 	esac
 done
 
+prev=''
 while true; do
 	content=`cat $FILE`
-	curl -d "$content" "$SERVER/rooms/$ROOM_ID" &> /dev/null
+	if [[ $content != $prev ]]; then
+		curl -d "$content" "$SERVER/rooms/$ROOM_ID" &> /dev/null
+		prev=$content;
+	fi;
 	sleep 0.1
 done &
 
