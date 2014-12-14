@@ -19,7 +19,7 @@ prev=''
 while true; do
 	content=`cat $FILE`
 	if [[ $content != $prev ]]; then
-		curl -d "$content" "$SERVER/rooms/$ROOM_ID" &> /dev/null
+		curl -d "$content" "$SERVER/api/terminals/$ROOM_ID" &> /dev/null
 		prev=$content;
 	fi;
 	sleep 0.1
