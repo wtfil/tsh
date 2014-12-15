@@ -3,17 +3,30 @@ FILE=~/.tsh/terminal-hardcopy
 PID_FILE=~/.tsh/pid
 ROOM_ID=`openssl rand -hex 123 | head -c 16`
 SERVER="https://glacial-oasis-4823.herokuapp.com"
+PANE=0
 
 mkdir -p ~/.tsh
 >$FILE
 
 function start {
+	if [ $TERM != 'screen' ]; then
+		echo "Not in tmux session. Connect to tmux first"
+		exit
+	fi;
 	prev=''
 	while true; do
-    	tmux capture-pane -t 0 \; save-buffer -b 0 $FILE
+		tmux capture-pane -e -t $PANE \; save-buffer -b 0 $FILE
+		width=`tmux display-message -pt $PANE -F '#{pane_width}'`
+		height=`tmux display-message -pt $PANE -F '#{pane_height}'`
 		content=`cat $FILE`
 		if [[ $content != $prev ]]; then
-			curl -d "$content" "$SERVER/rooms/$ROOM_ID" &> /dev/null
+			curl \
+				-d terminal="$content" \
+				-d width="$width" \
+				-d height="$height" \
+				-k "$SERVER/api/terminals/$ROOM_ID" \
+				&> /dev/null
+
 			prev=$content;
 		fi;
 		sleep 1
